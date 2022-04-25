@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 17:04:56 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/04/24 18:16:48 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/04/25 16:03:54 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,24 @@ void	trim_user_input(t_shell *shell, size_t item_len)
 	shell->user_input = trm_line;
 }
 
-size_t	manage_chevrons_length(t_shell *shell, size_t i)
+/* return 1 if pipe or < or >, 
+return 2 if << or >> */
+
+size_t	manage_chevrons_length(char *user_input, size_t i)
 {
 	char	*cutted_str;
 	size_t	len;
 	
-	cutted_str = &shell->user_input[i];
+	cutted_str = user_input[i];
 	len = ft_strlen(cutted_str);
-	if (shell->user_input[i] == '<' && len > 1)
+	if (user_input[i] == '<' && len > 1)
 	{
-		if (shell->user_input[i + 1] == '<')
+		if (user_input[i + 1] == '<')
 			return (2);
 	}
-	else if (shell->user_input[i] == '>' && len > 1)
+	else if (user_input[i] == '>' && len > 1)
 	{
-		if (shell->user_input[i + 1] == '>')
+		if (user_input[i + 1] == '>')
 			return (2);
 	}
 	return (1);
@@ -62,7 +65,7 @@ size_t	calc_token_length(t_shell *shell, char *user_input)
 			if (i > 0)
 				break ;
 			else
-				return (manage_chevrons_length(shell, i));
+				return (manage_chevrons_length(user_input, i));
 		}
 		else if (user_input[i] == ' ')
 			break ;
@@ -84,7 +87,7 @@ char	*isolate_item(t_shell *shell) // seems OK
 {
 	char	*item;
 	size_t	item_len;
-	
+
 	while (shell->user_input[0] == ' ')
 		shell->user_input++;
 	item_len = calc_token_length(shell, shell->user_input);
@@ -94,24 +97,4 @@ char	*isolate_item(t_shell *shell) // seems OK
 	ft_strlcpy(item, shell->user_input, item_len + 1);
 	trim_user_input(shell, item_len);
 	return (item);
-}
-
-t_token	*parse_user_input(t_shell *shell)
-{
-	t_token		*tokens;
-	char		*item;
-	int			i;
-	
-	i = 0;
-	while (shell->user_input)
-	{
-		item = isolate_item(shell);
-		if (!ft_strlen(item))
-		{
-			free(item);
-			break ;
-		}
-		i++;
-	}
-	return (tokens);
 }

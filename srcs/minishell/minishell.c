@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 16:58:57 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/04/24 17:29:10 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/04/25 18:22:12 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /* this function prevent segfault during tokenisation process
 by assessing if the user input is only composed of withespace */
 
-int	is_spaces_only(char *str)
+static int	is_spaces_only(char *str)
 {
 	int 	res;
 	int		i;
@@ -37,7 +37,7 @@ int	is_spaces_only(char *str)
 	return (res);
 }
 
-int	minishell(t_shell *shell)
+static int	minishell(t_shell *shell)
 {
 	char		*user_input;
 	t_token		*token;
@@ -66,8 +66,11 @@ int	main(int argc, char **argv, char **envp)
 	shell = (t_shell *)malloc(sizeof(t_shell));
 	if (!shell)
 		return (-1); // changer après
-	init_shell_struct(shell, envp); // ok till this point
+	init_shell_struct(shell, envp);
 	minishell(shell);
+	// free all the shell struct after this point
+	free_split(shell->env);
+	free_split(shell->paths);
 	free(shell);
 	return (0);
 }
