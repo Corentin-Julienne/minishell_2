@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 17:01:13 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/04/25 18:24:11 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/04/27 17:59:57 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 
 typedef struct s_shell
 {
-	int				rtn;
+	int				exit_status;
 	char			**env;
 	char			**paths;
 	char			*user_input;
@@ -102,7 +102,7 @@ char		*isolate_item(t_shell *shell);
 /* init_structs.c */
 int			init_shell_struct(t_shell *shell, char **envp);
 /* token_utils_1.c */ 
-t_token		*token_new(int type, char *item);
+t_token		*token_new(char *item);
 t_token		*token_last(t_token *token);
 int			token_size(t_token *token);
 /* token_utils_2.c */

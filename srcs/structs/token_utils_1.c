@@ -6,21 +6,21 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 16:09:27 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/04/25 16:23:18 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/04/27 12:57:47 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_token	*token_new(int type, char *item)
+t_token	*token_new(char *item)
 {
 	t_token		*new;
 	
 	new = (t_token *)malloc(sizeof(t_token));
 	if (!new)
 		return (NULL);
-	new->type = type;
 	new->item = item;
+	new->type = -1;
 	new->used = 0;
 	new->next = NULL;
 	new->prev = NULL;

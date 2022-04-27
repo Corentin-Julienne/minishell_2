@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 16:59:00 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/04/25 18:18:02 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/04/27 18:00:38 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	init_shell_struct(t_shell *shell, char **envp)
 {
+	shell->exit_status = 0;
 	shell->env = envdup(envp, -1);
 	if (!shell->env)
 		return (-1);

@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 17:04:56 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/04/25 16:03:54 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/04/27 13:15:23 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ size_t	calc_token_length(t_shell *shell, char *user_input)
 6) return the malloqued token
 */
 
-char	*isolate_item(t_shell *shell) // seems OK
+char	*isolate_item(t_shell *shell)
 {
 	char	*item;
 	size_t	item_len;

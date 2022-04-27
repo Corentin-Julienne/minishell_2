@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:16:09 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/04/25 18:12:41 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/04/27 12:48:31 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	fulfill_env(char **dup_env, char **envp, int pass)
 }
 
 /* envdup is a strdup for the env. However, if pass >= 0, it removes a variable 
-(and pass is the index of the variable to remove) */
+(and pass it the index of the variable to remove) */
 
 char	**envdup(char **envp, int pass)
 {

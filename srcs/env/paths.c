@@ -6,18 +6,21 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:48:27 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/04/25 18:13:48 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/04/27 12:42:55 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+/* paths.c allows to store every path in the shell struct
+in order to reuse it after for execve calls */
 
 static void	add_slashes(char **paths, char **paths_v2)
 {
 	char			*tmp;
 	int				i;
 
-	i = 0;	
+	i = 0;
 	while (paths[i])
 	{
 		paths_v2[i] = ft_strdup(paths[i]);
@@ -79,6 +82,6 @@ char	**recup_paths(char **envp)
 	paths = ft_split(paths_str, ':');
 	if (!paths)
 		return (NULL);
-	paths = paths_with_slash(paths);	
+	paths = paths_with_slash(paths);
 	return (paths);
 }

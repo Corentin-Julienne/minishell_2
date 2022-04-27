@@ -6,11 +6,13 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 15:51:38 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/04/25 16:00:08 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/04/27 18:26:06 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+
 
 /* return 1 if quote is valid (i.e. is NOT unclosed),
 and 1 otherwise */
