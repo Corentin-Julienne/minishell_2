@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 15:49:57 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/04/27 18:25:28 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/04/28 16:28:25 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ t_token	*parse_user_input(t_shell *shell)
 		new_elem = token_new(item);
 		if (!new_elem)
 			return (NULL); // change this !!!
+		new_elem->shell = shell;
 		token_add_back(&tokens, new_elem);
 		i++;
 	}

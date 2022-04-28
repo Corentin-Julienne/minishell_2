@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 17:01:13 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/04/27 17:59:57 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/04/28 16:27:24 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_token
 	int				used;
 	struct s_token	*prev;
 	struct s_token	*next;
+	struct s_shell	*shell;
 }					t_token;
 
 typedef struct s_seq

@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 17:04:56 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/04/27 13:15:23 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/04/28 15:55:30 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ size_t	calc_token_length(t_shell *shell, char *user_input)
 	while (user_input[i])
 	{
 		if (user_input[i] == '\'' || user_input[i] == '"')
-			i = i + calc_quote_length(user_input, i);
+			i = i + calc_quote_length(user_input, i) - 1;
 		else if (user_input[i] == '|' || user_input[i] == '<'
 			|| user_input[i] == '>')
 		{

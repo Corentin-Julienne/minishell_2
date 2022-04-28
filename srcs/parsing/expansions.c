@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 13:14:04 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/04/27 18:10:46 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/04/28 15:56:33 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 	are removed.
 */
 
-static char *assemble_xpd_var(t_token *token, char *env_var_exp,
+static char *assemble_parts(t_token *token, char *env_var_exp,
 	size_t i, size_t j)
 {
 	char		*part_1;
@@ -42,7 +42,7 @@ static char *assemble_xpd_var(t_token *token, char *env_var_exp,
 	return (part_1);
 }
 
-static int	xpd_env_var(t_token *token, char *str_to_expand, size_t i, size_t j)
+static int	insert_var(t_token *token, char *str_to_expand, size_t i, size_t j)
 {
 	
 	char		*env_var_exp;
@@ -54,7 +54,7 @@ static int	xpd_env_var(t_token *token, char *str_to_expand, size_t i, size_t j)
 	if (env_var_exp == NULL)
 		env_var_exp = "";
 	free(str_to_expand);
-	expanded_str = assemble_xpd_var(token, env_var_exp, i, j);
+	expanded_str = assemble_parts(token, env_var_exp, i, j);
 	if (!expanded_str)
 		return (-1);
 	free(token->item);
@@ -85,7 +85,7 @@ check whether $ is within simple quotes or not (inhibit expansion)
 then, when reaching a $ outside simple quotes check wether
 it is expansionnable or not. use rpl_env_var perform expansion */
 
-void	isolate_env_var(t_token *token)
+void	expand_env_var(t_token *token)
 {
 	int			quote_switch;
 	size_t		i;
@@ -100,15 +100,15 @@ void	isolate_env_var(t_token *token)
 			quote_switch++;
 		else if (token->item[i] == '\'' && quote_switch % 2 == 0
 			&& is_quote_valid(&token->item[i], '\''))
-			i = i + calc_quote_length(token->item, i);
+			i = i + calc_quote_length(token->item, i) - 1;
 		else if (token->item[i] == '$')
 		{
 			while (token->item[i + j] && ft_isalnum(token->item[i + j]))
 				j++;
 			if (token->item[i + 1] && token->item[i + 1] == '?')
-				xpd_env_var(token, ft_substr(token->item, i, i + 1), i, i + 1);
+				insert_var(token, ft_substr(token->item, i, i + 1), i, i + 1);
 			else if (token->item[i + 1] && ft_isalnum(token->item[i + 1]))
-				xpd_env_var(token, ft_substr(token->item, i, j), i, j);
+				insert_var(token, ft_substr(token->item, i, j), i, j);
 		}
 	}
 }

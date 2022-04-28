@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 16:58:57 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/04/27 18:02:58 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/04/28 16:25:27 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,5 @@ int	main(int argc, char **argv, char **envp)
 		return (-1); // changer après
 	init_shell_struct(shell, envp);
 	minishell(shell);
-	// free all the shell struct after this point
-	free_split(shell->env);
-	free_split(shell->paths);
-	free(shell);
 	return (0);
 }
