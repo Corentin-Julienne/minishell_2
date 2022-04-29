@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 16:58:57 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/04/28 16:25:27 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/04/29 17:08:11 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ static int	minishell(t_shell *shell)
 		if (ft_strlen(user_input) && !is_spaces_only(user_input))
 		{
 			shell->user_input = user_input;
+			add_history(user_input);
 			token = parse_user_input(shell);
 			display_every_token(token); // test func
-			
 		}
 		free(user_input);
 	}

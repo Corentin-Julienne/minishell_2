@@ -6,13 +6,13 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 17:04:56 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/04/28 15:55:30 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/04/29 15:53:29 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	trim_user_input(t_shell *shell, size_t item_len)
+static void	trim_user_input(t_shell *shell, size_t item_len)
 {
 	char	*trm_line;
 
@@ -24,7 +24,7 @@ void	trim_user_input(t_shell *shell, size_t item_len)
 /* return 1 if pipe or < or >, 
 return 2 if << or >> */
 
-size_t	manage_chevrons_length(char *user_input, size_t i)
+static size_t	manage_chevrons_length(char *user_input, size_t i)
 {
 	char	*cutted_str;
 	size_t	len;
@@ -50,7 +50,7 @@ size_t	manage_chevrons_length(char *user_input, size_t i)
 => if blank space and not inside quote, then stop there 
 */
 
-size_t	calc_token_length(t_shell *shell, char *user_input)
+static size_t	calc_token_length(t_shell *shell, char *user_input)
 {
 	size_t		i;
 

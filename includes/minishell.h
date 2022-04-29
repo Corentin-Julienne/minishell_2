@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 17:01:13 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/04/28 16:27:24 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/04/29 16:01:01 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,13 @@
 #define PIPE			1
 #define REDIR_INPUT		2
 #define REDIR_OUTPUT	3
-#define RI_CUT			4
+#define HERE_DOC		4
 #define RO_APPEND		5
 #define CMD				6
-#define	S_QUOTES		7
-#define D_QUOTES		8
-#define	ARG				9
+#define	ARG				7
+
+#define	S_QUOTES		1
+#define D_QUOTES		2
 
 typedef struct s_shell
 {
@@ -53,6 +54,7 @@ typedef struct s_token
 {
 	char			*item;
 	int				type;
+	int				is_quotted;
 	int				used;
 	struct s_token	*prev;
 	struct s_token	*next;
@@ -87,22 +89,22 @@ char		**recup_paths(char **envp);
 
 /* PARSING */
 
+/* expansions.c */
+void		expand_env_var(t_token *token);
 /* parsing.c */
 t_token		*parse_user_input(t_shell *shell);
 /* quotes.c */
+int			remove_quotes(t_token *token);
 int			is_quote_valid(char *item, char sep);
 size_t		calc_quote_length(char *str, size_t i);
 /* tokenisation.c */
-void		trim_user_input(t_shell *shell, size_t item_len);
-size_t		manage_chevrons_length(char *user_input, size_t i);
-size_t		calc_arg_length(t_shell *shell);
 char		*isolate_item(t_shell *shell);
 
 /* STRUCTS */
 
 /* init_structs.c */
 int			init_shell_struct(t_shell *shell, char **envp);
-/* token_utils_1.c */ 
+/* token_utils_1.c */
 t_token		*token_new(char *item);
 t_token		*token_last(t_token *token);
 int			token_size(t_token *token);
@@ -115,8 +117,11 @@ void		token_add_back(t_token **token, t_token *new);
 /* UTILS */
 
 /* free.c */
+void		free_three_ptn(void *ptn_1, void *ptn_2, void *ptn_3);
 void		free_split(char **split);
 void		free_problem_str_arr(char **split, int i);
+
+char		*ft_triple_join(const char *s1, const char *s2, const char *s3);
 
 /* DEBUG */
 

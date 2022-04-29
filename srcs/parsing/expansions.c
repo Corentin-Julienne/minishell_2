@@ -6,7 +6,7 @@
 /*   By: cjulienn <cjulienn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 13:14:04 by cjulienn          #+#    #+#             */
-/*   Updated: 2022/04/28 15:56:33 by cjulienn         ###   ########.fr       */
+/*   Updated: 2022/04/29 14:07:46 by cjulienn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,8 @@ static int	is_within_double_quotes(t_token *token, size_t i, int quote_switch)
 	return (0);
 }
 
-/*  */
-
 /* this func takes care of the $ expansions
-check whether $ is within simple quotes or not (inhibit expansion) 
+check whether $ is within simple quotes or not (inhibit expansion)
 then, when reaching a $ outside simple quotes check wether
 it is expansionnable or not. use rpl_env_var perform expansion */
 
